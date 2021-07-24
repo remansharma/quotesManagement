@@ -1,0 +1,10 @@
+<div class="container my-4">
+    <h1>See Quotes</h1>    
+    
+    <% for(let i=0; i< quotesFromDatabase.length; i++) { %>
+        <div class="alert alert-primary" role="alert">
+            "<%=quotesFromDatabase[i].quote%>" said by <%=quotesFromDatabase[i].author%>
+          </div>
+    <% } %>
+
+</div>

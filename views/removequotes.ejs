@@ -1,0 +1,25 @@
+<div class="container my-4">
+
+    <%- include(  "./partials/messages") %>
+    <h1>Remove Quotes</h1>       
+
+    <% for(let i=0; i< quotesFromDatabase.length; i++) { %>
+          
+          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Remove:</strong> "<%=quotesFromDatabase[i].quote%>" said by <%=quotesFromDatabase[i].author%>.
+            <form action="/removequotes" method="POST">
+                <input value="<%=quotesFromDatabase[i]._id%>" name="quoteid" class="d-none">
+                <button type="submit" class="close" onClick='return confirmSubmit()'>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </form>
+            
+          </div>
+          
+    <% } %>
+
+
+      
+
+
+</div>

@@ -1,0 +1,59 @@
+<div class="container my-4">
+    <%- include(  "./partials/messages") %>
+    <h1>Update Quotes</h1>
+    
+    <% for(let i=0; i< quotesFromDatabase.length; i++) { %>
+          
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong>Update Quote:</strong> "<%=quotesFromDatabase[i].quote%>" said by <%=quotesFromDatabase[i].author%>.
+          <button type="submit" class="close" data-toggle="modal" data-target="#quote<%=i%>">
+            <span aria-hidden="true">UQ</span>
+            
+          </button>          
+        </div>
+        
+  <% } %>
+</div>
+
+
+<!--  -->
+<% for(let i=0; i< quotesFromDatabase.length; i++) { %>
+<!-- Modal -->
+<div class="modal fade" id="quote<%=i%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Quote <%=i+1%></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal Body Starts Here -->
+        <form action="/updatequotes" method="POST">
+          <div class="form-group d-none">
+            <label>QuoteID</label>
+            <input name="quoteID" type="text" class="form-control" value="<%=quotesFromDatabase[i]._id%>">          
+          </div>
+        <div class="form-group">
+          <label>Quote</label>
+          <!-- <input name="updatedQuote" type="text" class="form-control" value="<%=quotesFromDatabase[i].quote%>" required>           -->
+          <textarea rows="10" name="updatedQuote" class="form-control" required placeholder="Write your quote here" aria-label="With textarea"><%=quotesFromDatabase[i].quote%></textarea>
+        </div>
+        <div class="form-group">
+          <label>Author</label>
+          <input name="updatedAuthor" type="text" class="form-control" value="<%=quotesFromDatabase[i].author%>" required>          
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+        <!-- Modal Body Ends Here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<!--  -->
